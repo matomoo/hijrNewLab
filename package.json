@@ -1,0 +1,119 @@
+{
+  "name": "new-lab",
+  "version": "1.0.0",
+  "description": "starting react express app with me!",
+  "postinstall": "tsc",
+  "scripts": {
+    "dev": "tsc && webpack-dev-server",
+    "start": "tsc && webpack-dashboard -- webpack-dev-server -d --hot --config webpack.config.js --watch",
+    "tsc": "tsc",
+    "test": "jest -u",
+    "production": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "setupFiles": [
+      "./test/shimSetup.js",
+      "./test/jestSetup.ts"
+    ],
+    "snapshotSerializers": [
+      "./node_modules/enzyme-to-json/serializer"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|jsx?|ts?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "globals": {
+      "ts-jest": {
+        "useBabelrc": true
+      }
+    }
+  },
+  "author": "hyochan",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^3.9.0",
+    "classnames": "^2.2.6",
+    "firebase": "^5.8.0",
+    "mobx": "^5.8.0",
+    "mobx-react": "^5.4.3",
+    "react": "^16.7.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^4.3.1",
+    "typeface-roboto": "0.0.54"
+  },
+  "devDependencies": {
+    "@types/css": "0.0.31",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-redux": "^6.0.12",
+    "@types/react-test-renderer": "^16.0.3",
+    "@types/redux": "^3.6.0",
+    "@babel/cli": "7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-decorators": "7.2.3",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-function-sent": "^7.2.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "@babel/preset-env": "7.2.3",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/runtime": "7.2.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.3.5",
+    "expect": "^23.6.0",
+    "file-loader": "^3.0.1",
+    "history": "^4.7.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.6.0",
+    "node-sass": "^4.11.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "radium": "^0.25.1",
+    "react-test-renderer": "^16.7.0",
+    "script-loader": "^0.7.2",
+    "style-loader": "^0.23.1",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.3",
+    "tslib": "^1.9.3",
+    "tslint": "^5.12.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dashboard": "^2.0.0",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
