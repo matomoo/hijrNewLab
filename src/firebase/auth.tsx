@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
 import { auth, authEmailProvider } from './firebase';
 // import { promisify } from 'es6-promisify';
 
@@ -26,10 +26,10 @@ export const doAuthUser = (authUser) =>
   auth.onAuthStateChanged(authUser);
 
 // isChangePassword
-export const doChangePassword = (email, oldPwd, newPwd) => 
+export const doChangePassword = (email, oldPwd, newPwd) =>
   // const cred = authEmailProvider.credential(email, oldPwd);
   auth.currentUser.reauthenticateAndRetrieveDataWithCredential(
-    authEmailProvider.credential(email, oldPwd)
+    authEmailProvider.credential(email, oldPwd),
   )
-    .then(() => auth.currentUser.updatePassword(newPwd))
-    // .catch((err) => console.log(err))    
+    .then(() => auth.currentUser.updatePassword(newPwd));
+    // .catch((err) => console.log(err))

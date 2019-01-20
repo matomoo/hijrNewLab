@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
+// import { Link } from 'react-router-dom';
+// import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 // import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
@@ -9,8 +10,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames/bind';
-import * as db1 from '../../../firebase/firebase';
-import {auth} from '../../../firebase';
+// import * as db1 from '../../../firebase/firebase';
+import {auth} from '../../../firebase/firebase';
 
 const classes = require('./Authee.css');
 const cx = classNames.bind(classes);
@@ -19,8 +20,9 @@ interface IProps {
   store: any;
 }
 interface IState {
-  username;
+  email;
   password;
+  isLoggingIn;
 }
 
 @inject('store') @observer
@@ -29,8 +31,9 @@ class Screen extends Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
+      isLoggingIn: true,
     };
   }
 
@@ -41,10 +44,10 @@ class Screen extends Component<IProps, IState> {
     });
     return (
       <div className={containerClass}>
-        <Grid container={true} spacing={24}>
+        {/* <Grid container={true} spacing={24}>
           <Grid item={true} xs={6} sm={3} />
           <Grid item={true} xs={6} sm={3} />
-          <Grid item={true} xs={6} sm={3}>
+          <Grid item={true} xs={6} sm={3}> */}
             <Paper className={classes.box}>
               <Typography variant='h5'>
                 Aplikasi NewLAB
@@ -53,14 +56,14 @@ class Screen extends Component<IProps, IState> {
                 id='outlined-name'
                 label='Email'
                 // value='mmto'
-                onChange={(ev) => this.setState({ username: ev.target.value })}
+                onChange={(ev) => this.setState({ email: ev.target.value })}
                 margin='normal'
                 variant='outlined'
                 style={{width: 250}}
               />
               <br/>
               <TextField
-                id='outlined-name'
+                id='outlined-pass'
                 label='Password'
                 // value='mmto'
                 type='password'
@@ -75,31 +78,25 @@ class Screen extends Component<IProps, IState> {
                 Login
               </Button>
             </Paper>
-          </Grid>
-        </Grid>
+          {/* </Grid>
+        </Grid> */}
       </div>
     );
   }
 
   private _onLogin = () => {
-    console.log(this.state);
+    this.setState({ isLoggingIn: true });
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((authUser) => {
+        this.props.store.user.uid = authUser.user.uid;
+        // this.props.navigation.navigate('AppLoaderScreen');
+      })
+      .catch((error) => {
+        // Alert.alert(error.message);
+        this.setState({ isLoggingIn: false });
+      });
   }
 
 }
 
 export default Screen;
-
-// const styles = {
-//   wrapper: {
-//     flex: 1,
-//     marginTop: 100,
-//   },
-//   paper: {
-//     // padding: 2,
-//     textAlign: 'center',
-//     direction: 'column',
-//     justify: 'flex-start',
-//     alignItem: 'flex-start',
-//     // color: theme.palette.text.secondary,
-//   },
-// };

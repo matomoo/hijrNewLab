@@ -10,7 +10,7 @@ import Login from '../screen/Authee/Login';
 @inject('store')
 class RootStackNavigator extends Component<any> {
   public componentDidMount() {
-    console.log(`userLang: ${this.props.store.locale.LANG}`);
+    // console.log(`userLang: ${this.props.store.locale.LANG}`);
   }
 
   public render() {
